@@ -1,0 +1,80 @@
+﻿@model List<ViewGameDemo.Models.Game>
+
+<h1 class="text-center mb-5">🎮 Game Library</h1>
+
+@foreach (var categoryGroup in Model.GroupBy(g => g.Category))
+{
+    <div class="genre-row">
+
+        <!-- Genre Name -->
+        <h2 class="genre-title">@categoryGroup.Key</h2>
+
+        <!-- Games In That Genre -->
+        <div class="game-grid">
+            @foreach (var game in categoryGroup)
+            {
+                <div class="game-card">
+                    <img src="@game.ImageUrl" alt="@game.Name" class="game-image" />
+
+                    <div class="game-overlay">
+                        <h3>@game.Name</h3>
+                        <p>@game.Description</p>
+                        <span class="badge">@game.Difficulty</span>
+                        <button class="play-btn" onclick="showLoginModal('@game.Id')">Play Now</button>
+                    </div>
+                </div>
+            }
+        </div>
+
+    </div>
+}
+
+<div id="loginModal" class="modal">
+    <div class="modal-content">
+        <span class="close" onclick="closeLoginModal()">&times;</span>
+        <h2>Login to Play</h2>
+        <form id="loginForm" onsubmit="return handleLogin()">
+            <input type="email" id="email" placeholder="Email" required />
+            <input type="password" id="password" placeholder="Password" required />
+            <button type="submit">Login</button>
+        </form>
+        <p id="loginError" style="color:red; display:none;">Invalid email or password</p>
+    </div>
+</div>
+
+<script>
+    let selectedGameId = null;
+
+    function showLoginModal(gameId) {
+        selectedGameId = gameId;
+        document.getElementById('loginModal').style.display = 'block';
+    }
+
+    function closeLoginModal() {
+        document.getElementById('loginModal').style.display = 'none';
+        document.getElementById('loginError').style.display = 'none';
+    }
+
+    function handleLogin() {
+        const email = document.getElementById('email').value;
+        const password = document.getElementById('password').value;
+
+        // Hardcoded test user
+        if (email === "test@example.com" && password === "password123") {
+            // Redirect to game page
+            window.location.href = '/Game/Play/' + selectedGameId;
+            return false; // prevent form submit
+        } else {
+            document.getElementById('loginError').style.display = 'block';
+            return false;
+        }
+    }
+
+    // Close modal if clicking outside content
+    window.onclick = function(event) {
+        const modal = document.getElementById('loginModal');
+        if (event.target == modal) {
+            closeLoginModal();
+        }
+    }
+</script>

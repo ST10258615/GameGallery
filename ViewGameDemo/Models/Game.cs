@@ -16,5 +16,7 @@ namespace ViewGameDemo.Models
         public string Category { get; set; }
 
         public string Difficulty { get; set; }
+
+        public string Rules { get; set; }
     }
 }

@@ -1,9 +1,21 @@
-﻿@model ViewGameDemo.Models.Game
+﻿@model Game
 
-<h1>@Model.Name</h1>
-<p>@Model.Description</p>
+<div class="game-banner-container">
 
-<div class="game-play-area">
-    <!-- You can embed an iframe, canvas, or just show demo text for now -->
-    <p>🎮 This is where your game would appear!</p>
+    <!-- Banner with hover Play button -->
+    <div class="game-banner">
+        <img src="@Model.ImageUrl" alt="@Model.Name" class="banner-image" />
+
+        <a href="@Url.Action("Start", "Game", new { id = Model.Id })" class="banner-play-btn">
+            Play Game
+        </a>
+    </div>
+
+    <!-- Rules section below banner -->
+    <div class="game-rules-section">
+        <h2>@Model.Name</h2>
+        <h3>How to Play</h3>
+        <p>@Model.Rules</p>
+    </div>
+
 </div>

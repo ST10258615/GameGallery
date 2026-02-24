@@ -183,3 +183,102 @@ body {
     color: white;
     font-size: 18px;
 }
+
+.play-container {
+    text-align: center;
+    padding: 40px;
+}
+
+.large-game-image {
+    width: 250px;
+    height: 250px;
+    object-fit: contain;
+    border-radius: 20px;
+    box-shadow: 0 8px 20px rgba(0,0,0,0.3);
+    margin-bottom: 20px;
+}
+
+.game-rules {
+    max-width: 600px;
+    margin: 0 auto;
+    background: #1e1e1e;
+    padding: 20px;
+    border-radius: 15px;
+    margin-top: 20px;
+    color:white
+}
+
+    .game-rules h3 {
+        margin-bottom: 10px;
+    }
+/* Container for the banner + rules */
+.game-banner-container {
+    width: 100%;
+    max-width: 1000px; /* adjust to your layout */
+    margin: 0 auto;
+    padding: 20px;
+}
+
+
+.game-banner {
+    position: relative;
+    width: 100%;
+    height: 250px; /* adjust as needed */
+    overflow: hidden;
+    border-radius: 15px;
+    box-shadow: 0 6px 18px rgba(0,0,0,0.3);
+}
+
+/* Banner image fully fills the banner */
+.banner-image {
+    width: 100%; /* fill width */
+    height: 100%; /* fill height */
+    object-fit: fill; /* squash/stretch to cover banner */
+    display: block;
+    transition: transform 0.3s;
+}
+
+.game-banner:hover .banner-image {
+    transform: scale(1.05); /* optional zoom effect */
+}
+
+/* Play button overlay */
+.banner-play-btn {
+    position: absolute;
+    top: 50%;
+    left: 50%;
+    transform: translate(-50%, -50%);
+    background: #4caf50;
+    padding: 12px 28px;
+    border-radius: 8px;
+    color: white;
+    font-weight: bold;
+    text-decoration: none;
+    opacity: 0;
+    transition: opacity 0.3s, transform 0.3s;
+}
+
+.game-banner:hover .banner-play-btn {
+    opacity: 1;
+    transform: translate(-50%, -50%) scale(1.1);
+}
+
+/* Rules section below banner */
+.game-rules-section {
+    margin-top: 25px;
+    background: #f0f0f0;
+    padding: 20px;
+    border-radius: 12px;
+}
+
+    .game-rules-section h2 {
+        margin-bottom: 10px;
+    }
+
+    .game-rules-section h3 {
+        margin-bottom: 8px;
+    }
+
+    .game-rules-section p {
+        line-height: 1.5;
+    }

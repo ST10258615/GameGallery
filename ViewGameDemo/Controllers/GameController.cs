@@ -15,6 +15,7 @@ namespace ViewGameDemo.Controllers
         public IActionResult Play(int id)
         {
             var game = GameRepository.Games.FirstOrDefault(g => g.Id == id);
+
             if (game == null)
                 return NotFound();
 

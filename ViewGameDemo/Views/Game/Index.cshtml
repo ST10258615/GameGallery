@@ -2,32 +2,55 @@
 
 <h1 class="text-center mb-5">🎮 Game Library</h1>
 
-@foreach (var categoryGroup in Model.GroupBy(g => g.Category))
-{
-    <div class="genre-row">
-
-        <!-- Genre Name -->
-        <h2 class="genre-title">@categoryGroup.Key</h2>
-
-        <!-- Games In That Genre -->
-        <div class="game-grid">
-            @foreach (var game in categoryGroup)
-            {
-                <div class="game-card">
-                    <img src="@game.ImageUrl" alt="@game.Name" class="game-image" />
-
-                    <div class="game-overlay">
-                        <h3>@game.Name</h3>
-                        <p>@game.Description</p>
-                        <span class="badge">@game.Difficulty</span>
-                        <button class="play-btn" onclick="showLoginModal('@game.Id')">Play Now</button>
-                    </div>
-                </div>
-            }
-        </div>
-
+<div class="category-row">
+    <div class="category-card strategy" onclick="filterGames('Strategy')">
+        Strategy
     </div>
-}
+    <div class="category-card arcade" onclick="filterGames('Arcade')">
+        Arcade
+    </div>
+    <div class="category-card puzzle" onclick="filterGames('Puzzle')">
+        Puzzle
+    </div>
+    <div class="category-card casual" onclick="filterGames('Casual')">
+        Casual
+    </div>
+</div>
+<div id="games-container" style="display:none;">
+
+    @foreach (var categoryGroup in Model.GroupBy(g => g.Category))
+    {
+        <div class="genre-row" data-category="@categoryGroup.Key">
+
+            <!-- Genre Name -->
+            <div class="genre-header">
+                <div class="genre-accent"></div>
+                <h2 class="genre-title">@categoryGroup.Key</h2>
+            </div>
+
+            <!-- Games In That Genre -->
+            <div class="game-grid">
+                @foreach (var game in categoryGroup)
+                {
+                    <div class="game-card">
+                        <img src="@game.ImageUrl" alt="@game.Name" class="game-image" />
+
+                        <div class="game-overlay">
+                            <h3>@game.Name</h3>
+                            <p>@game.Description</p>
+                            <span class="badge">@game.Difficulty</span>
+                            <button class="play-btn" onclick="handlePlay('@game.Id')">
+                                Play Now
+                            </button>
+                        </div>
+                    </div>
+                }
+            </div>
+
+        </div>
+    }
+
+</div>
 
 <div id="loginModal" class="modal">
     <div class="modal-content">
@@ -76,5 +99,26 @@
         if (event.target == modal) {
             closeLoginModal();
         }
+    }
+</script>
+
+<script>
+    function filterGames(category) {
+
+        // Show the container
+        document.getElementById("games-container").style.display = "block";
+
+        // Get all genre rows
+        var rows = document.querySelectorAll(".genre-row");
+
+        rows.forEach(function(row) {
+
+            if (row.getAttribute("data-category") === category) {
+                row.style.display = "block";
+            } else {
+                row.style.display = "none";
+            }
+
+        });
     }
 </script>

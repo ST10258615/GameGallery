@@ -3,17 +3,25 @@
 <h1 class="text-center mb-5">🎮 Game Library</h1>
 
 <div class="category-row">
-    <div class="category-card strategy" onclick="filterGames('Strategy')">
-        Strategy
+    <div class="category-item" onclick="filterGames('Strategy')">
+        <img src="~/images/catIcon1.png" alt="Strategy" class="category-icon" />
+        <span class="category-label">Slots</span>
     </div>
-    <div class="category-card arcade" onclick="filterGames('Arcade')">
-        Arcade
+    <div class="category-item" onclick="filterGames('Arcade')">
+        <img src="~/images/catIcon2.png" alt="Arcade" class="category-icon" />
+        <span class="category-label">Table</span>
     </div>
-    <div class="category-card puzzle" onclick="filterGames('Puzzle')">
-        Puzzle
+    <div class="category-item" onclick="filterGames('Puzzle')">
+        <img src="~/images/catIcon3.png" alt="Puzzle" class="category-icon" />
+        <span class="category-label">Live</span>
     </div>
-    <div class="category-card casual" onclick="filterGames('Casual')">
-        Casual
+    <div class="category-item" onclick="filterGames('Casual')">
+        <img src="~/images/catIcon4.png" alt="Casual" class="category-icon" />
+        <span class="category-label">Crash</span>
+    </div>
+    <div class="category-item" onclick="filterGames('Casual')">
+        <img src="~/images/catIcon5.png" alt="Casual" class="category-icon" />
+        <span class="category-label">Parlour</span>
     </div>
 </div>
 <div id="games-container" style="display:none;">
